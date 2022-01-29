@@ -7,6 +7,14 @@ struct Human
     int v;
 };
 
+// процедура чтоб присвоить новые значени полям структуры
+void InitMan(struct Human *F, char *name, int height)
+{
+    F->name = name;
+    F->v = height;
+}
+
+
 int main(void)
 {
     struct Human PS = { "Nata1", 40 };    // 1 вариант инициализации ( при создании )
@@ -21,6 +29,21 @@ int main(void)
     P->name = "Nata3";  
     P->v = 42;
     printf("%s  %d\n", PS.name, PS.v); 
+
+    
+    struct Human PS1[3] = {{"m1",100},{"m2",200},{"m3",300}};// вариант инициализации массива структур, при создании
+    printf("%s  %d\n", PS1[0].name, PS1[0].v); 
+    printf("%s  %d\n", PS1[1].name, PS1[1].v); 
+    printf("%s  %d\n", PS1[2].name, PS1[2].v); 
+
+// используем отдельную процедуру чтоб поменять поля  1-вариант                  
+    InitMan(&PS1[0], "Nata4", 44); // вместо &PS1[0] правильней писать  PS1    одно и тоже
+    InitMan(&PS1[1], "Nata5", 45); // вместо &PS1[1] правильней писать  PS1+1  одно и тоже
+    InitMan(&PS1[2], "Nata6", 46); // вместо &PS1[0] правильней писать  PS1+2  одно и тоже
+
+    for (int i = 0; i < 3; i++)
+    printf("%s  %d\n", PS1[i].name, PS1[i].v); 
+
 
 return 0;
 }
